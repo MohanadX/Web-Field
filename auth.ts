@@ -15,9 +15,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 	callbacks: {
 		// will be called after authentication process
 		async signIn({ user, profile }: { user: AdapterUser; profile: Profile }) {
-			const existingUser = await client.fetch(AUTHOR_BY_GITHUB_ID_QUERY, {
-				id: profile?.id,
-			});
+			const existingUser = await client
+				.withConfig({ useCdn: false })
+				.fetch(AUTHOR_BY_GITHUB_ID_QUERY, {
+					id: profile?.id,
+				});
 
 			if (!existingUser) {
 				await writeClient.create({
@@ -42,11 +44,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 			profile: Profile;
 		}) {
 			if (account && profile) {
-				const user = await client.fetch(AUTHOR_BY_GITHUB_ID_QUERY, {
-					id: profile?.id,
-				});
+				const user = await client
+					.withConfig({ useCdn: false })
+					.fetch(AUTHOR_BY_GITHUB_ID_QUERY, {
+						id: profile?.id,
+					});
 
-				token.id = user?._id;
+				token.id = user!._id;
 			}
 			return token;
 		},

@@ -36,7 +36,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 					alt="thumbnail"
 					height={200}
 					width={200}
-					className="w-full h-auto aspect-[1.91/1] rounded-xl"
+					className="h-[200px] aspect-[4/3] rounded-xl mx-auto"
 				/>
 				<div className="space-y-5 mt-10 max-w-4xl mx-auto">
 					<div className="flex-between gap-5">
@@ -45,7 +45,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 							className="flex gap-2 items-center mb-3"
 						>
 							<Image
-								src={post.author!.image!}
+								src={post.author?.image || ""}
 								alt="avatar"
 								width={64}
 								height={64}

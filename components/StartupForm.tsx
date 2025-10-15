@@ -6,7 +6,7 @@ import MDEditor from "@uiw/react-md-editor";
 import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 import { formSchema } from "@/lib/validation";
-import { unknown, z } from "zod";
+import { z } from "zod";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { createPitch } from "@/lib/actions";
@@ -17,7 +17,7 @@ const StartupForm = () => {
 
 	const router = useRouter();
 
-	const handleFormSubmit = async (prevState: any, formData: FormData) => {
+	const handleFormSubmit = async (prevState: object, formData: FormData) => {
 		try {
 			const formValues = {
 				title: formData.get("title") as string,
@@ -32,7 +32,19 @@ const StartupForm = () => {
 
 			if (result.status === "SUCCESS") {
 				toast.success("Your startup pitch has been created successfully");
-				router.push(`/startup/${result._id}`);
+
+				// Wait for Sanity to propagate reference fields
+				await new Promise((res) => setTimeout(res, 1000));
+
+				router.push(`/startup/${result._id}?refresh=${Date.now()}`);
+				/*
+				This creates a unique URL, forcing Next.js (and your browser) to fetch fresh data from Sanity
+				. Analogy
+				Think of caching like this:
+				“If you visit the same URL, I’ll reuse what I already have.”
+				By appending a new query every time:
+				“This is not the same URL anymore, please fetch it again.”
+				*/
 			}
 
 			return result;

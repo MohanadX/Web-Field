@@ -22,10 +22,4 @@ export const playlist = defineType({
 			of: [{ type: "reference", to: [{ type: "startup" }] }],
 		}),
 	],
-	preview: {
-		select: {
-			// allow us to select these by title (show them in sanity studio CLI)
-			title: "title",
-		},
-	},
 });

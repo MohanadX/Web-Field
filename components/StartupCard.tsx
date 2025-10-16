@@ -2,7 +2,6 @@ import { formatDate } from "@/lib/utils";
 import { EyeIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import React from "react";
 import { Button } from "./ui/button";
 import { Author, Startup } from "@/sanity/types";
 

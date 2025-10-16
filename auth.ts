@@ -12,6 +12,10 @@ import { Profile } from "next-auth";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
 	providers: [GitHub],
+	trustedHosts: [
+		"web-field.netlify.app", // your production host
+		"localhost:3000", // keep for local dev
+	],
 	callbacks: {
 		// will be called after authentication process
 		async signIn({ user, profile }: { user: AdapterUser; profile: Profile }) {

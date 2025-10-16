@@ -5,7 +5,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4.0.0-06B6D4?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![shadcn/ui](https://img.shields.io/badge/shadcn/ui-Ready%20Components-1F2937?logo=tailwindcss&logoColor=white)](https://ui.shadcn.com/)
-[![NextAuth.js](https://img.shields.io/badge/NextAuth.js-v5.0.0-beta.29-blue?style=flat)](https://next-auth.js.org/)
+[![NextAuth.js](https://next-auth.js.org/img/logo/logo-sm.png)](https://next-auth.js.org/)
 
 [![Sanity.io](https://img.shields.io/badge/Sanity.io-4.10.2-FF3E00?logo=sanity&logoColor=white)](https://www.sanity.io/)
 [![Netlify](https://img.shields.io/badge/Netlify-Deploy-success?logo=netlify&logoColor=white)](https://www.netlify.com/)

@@ -51,6 +51,7 @@
 	"devDependencies": {
 		"@babel/types": "^7.28.4",
 		"@eslint/eslintrc": "^3",
+		"@netlify/plugin-nextjs": "^5.14.0",
 		"@tailwindcss/postcss": "^4",
 		"@types/markdown-it": "^14.1.2",
 		"@types/node": "^20",

@@ -65,7 +65,7 @@
 		@apply font-normal text-[16px] line-clamp-2 my-3 text-black break-all;
 	}
 	.startup-card-img {
-		@apply w-fit h-[164px] rounded-[10px] object-cover;
+		@apply w-full h-[164px] rounded-[10px] object-cover;
 	}
 	.startup-card-btn {
 		@apply rounded-full bg-black font-medium text-[16px] text-white px-5 py-3;

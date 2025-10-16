@@ -12,6 +12,7 @@ import markdownit from "markdown-it";
 import { Skeleton } from "@/components/ui/skeleton";
 import View from "@/components/View";
 import StartupCard, { StartupCardType } from "@/components/StartupCard";
+import { PLAYLIST_BY_SLUG_QUERYResult } from "@/sanity/types";
 
 export const experimental_ppr = true;
 
@@ -22,7 +23,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
 	const [post, { select: editorPosts }] = await Promise.all([
 		client.fetch<StartupCardType>(STARTUP_BY_iD_QUERY, { id: id }),
-		client.fetch(PLAYLIST_BY_SLUG_QUERY, {
+		client.fetch<PLAYLIST_BY_SLUG_QUERYResult>(PLAYLIST_BY_SLUG_QUERY, {
 			slug: "editor-picks",
 		}),
 	]);

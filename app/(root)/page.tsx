@@ -45,6 +45,7 @@ export default async function Home({
 				</ul>
 			</section>
 			<SanityLive />
+			{/* client Component behind the scene subscribe to Sanity Listen */}
 		</>
 	);
 }

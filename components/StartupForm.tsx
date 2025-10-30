@@ -7,9 +7,19 @@ import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 import { formSchema } from "@/lib/validation";
 import { z } from "zod";
-import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { createPitch } from "@/lib/actions";
+
+// Memoized toast loader to avoid repeated imports
+let toastModule: typeof import("sonner") | null = null;
+
+const getToast = async () => {
+	if (!toastModule) {
+		toastModule = await import("sonner");
+	}
+
+	return toastModule.toast;
+};
 
 const StartupForm = () => {
 	const [error, setError] = useState<Record<string, string>>({});
@@ -18,6 +28,7 @@ const StartupForm = () => {
 	const router = useRouter();
 
 	const handleFormSubmit = async (prevState: object, formData: FormData) => {
+		const toast = await getToast();
 		try {
 			const formValues = {
 				title: formData.get("title") as string,

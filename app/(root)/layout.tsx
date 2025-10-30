@@ -1,8 +1,8 @@
 import { ReactNode, Suspense } from "react";
 import Navbar from "../../components/Navbar";
-import { Loader } from "@/components/Loader";
+import Loader from "@/components/Loader";
 
-export default function Layout({
+export default async function Layout({
 	children,
 }: Readonly<{ children: ReactNode }>) {
 	return (

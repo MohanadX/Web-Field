@@ -5,7 +5,7 @@ import {
 	STARTUP_BY_iD_QUERY,
 } from "@/sanity/lib/queries";
 import { notFound } from "next/navigation";
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import markdownit from "markdown-it";

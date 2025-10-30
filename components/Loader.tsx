@@ -1,10 +1,10 @@
-import React from "react";
+import { memo } from "react";
 
 interface LoaderProps {
 	type?: "navbar" | "page";
 }
 
-export const Loader: React.FC<LoaderProps> = ({ type = "page" }) => {
+const Loader: React.FC<LoaderProps> = ({ type = "page" }) => {
 	if (type === "navbar") {
 		// Subtle inline loader for Navbar
 		return (
@@ -34,3 +34,5 @@ export const Loader: React.FC<LoaderProps> = ({ type = "page" }) => {
 		</div>
 	);
 };
+
+export default memo(Loader);

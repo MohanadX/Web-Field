@@ -1,4 +1,4 @@
-import React from "react";
+import { memo } from "react";
 
 const Ping = () => {
 	return (
@@ -13,4 +13,4 @@ const Ping = () => {
 	);
 };
 
-export default Ping;
+export default memo(Ping);

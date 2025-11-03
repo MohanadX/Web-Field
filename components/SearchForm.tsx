@@ -17,7 +17,11 @@ const SearchForm = ({ query }: { query?: string }) => {
 
 			<div className="flex gap-2">
 				{query && <SearchFormReset />}
-				<button type="submit" className="search-btn">
+				<button
+					type="submit"
+					className="search-btn"
+					aria-label="Search For Startup"
+				>
 					<Search className="size-5 text-white" />
 				</button>
 			</div>

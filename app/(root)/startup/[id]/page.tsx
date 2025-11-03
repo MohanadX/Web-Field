@@ -12,7 +12,6 @@ import markdownit from "markdown-it";
 import { Skeleton } from "@/components/ui/skeleton";
 import View from "@/components/View";
 import StartupCard, { StartupCardType } from "@/components/StartupCard";
-import { PLAYLIST_BY_SLUG_QUERYResult } from "@/sanity/types";
 
 export const experimental_ppr = true;
 
@@ -21,12 +20,8 @@ const md = markdownit();
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 	const id = (await params).id;
 
-	const [post, { select: editorPosts }] = await Promise.all([
-		client.fetch<StartupCardType>(STARTUP_BY_iD_QUERY, { id: id }),
-		client.fetch<PLAYLIST_BY_SLUG_QUERYResult>(PLAYLIST_BY_SLUG_QUERY, {
-			slug: "editor-picks",
-		}),
-	]);
+	// Fetch startup post
+	const post = await client.fetch<StartupCardType>(STARTUP_BY_iD_QUERY, { id });
 
 	// const post = await client.fetch(STARTUP_BY_iD_QUERY, { id: id });
 
@@ -85,18 +80,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 				</div>
 				<hr className="divider" />
 
-				{editorPosts?.length > 0 && (
-					<div className="max-w-4xl mx-auto">
-						<p className="text-[30px] font-semibold">Mohanad Picks</p>
-
-						<ul className="mt-7 cards-grid">
-							{editorPosts.map((post: StartupCardType, index: number) => (
-								<StartupCard key={index} post={post} />
-							))}
-						</ul>
-					</div>
-				)}
-
+				<EditorPicks />
 				<Suspense fallback={<Skeleton className="view-skeleton" />}>
 					<View id={id} />
 				</Suspense>
@@ -106,3 +90,29 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 };
 
 export default Page;
+
+async function EditorPicks() {
+	"use cache";
+	// fetch editor picks once and cache automatically
+	const res = await client.fetch<{ select: StartupCardType[] }>(
+		PLAYLIST_BY_SLUG_QUERY,
+		{
+			slug: "editor-picks",
+		}
+	);
+
+	const editorPosts = res.select || [];
+
+	if (!editorPosts.length) return null;
+
+	return (
+		<div className="max-w-4xl mx-auto mt-12">
+			<p className="text-[30px] font-semibold">Mohanad Picks</p>
+			<ul className="mt-7 cards-grid">
+				{editorPosts.map((post) => (
+					<StartupCard key={post._id} post={post} />
+				))}
+			</ul>
+		</div>
+	);
+}

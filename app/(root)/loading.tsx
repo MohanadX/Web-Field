@@ -1,8 +1,6 @@
 // app/loading.tsx (server component)
 import DynamicLoading from "@/components/DynamicLoading";
 
-export const dynamic = "force-static";
-
 export default function Loading() {
 	return (
 		<div className="flex items-center justify-center w-full h-full bg-white dark:bg-gray-900 min-h-[93vh]">

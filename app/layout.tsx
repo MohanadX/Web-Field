@@ -55,11 +55,61 @@ const workSans = localFont({
 	variable: "--font-work-sans",
 });
 
+const BASE_URL = process.env.AUTH_URL!;
+
 export const metadata: Metadata = {
-	title: "Web Field",
-	description: `Web Field is a community-driven platform that connects and empowers startups to share their stories,
-	showcase innovations, and collaborate with others in the digital ecosystem. Whether you're a founder launching a new product or a developer seeking inspiration, Web Field gives you the space to publish posts,
-	explore ideas, and discover growing companies shaping the future of tech.`,
+	title: "Web Field – Startup & Innovation Community",
+	description:
+		"Web Field is a community-driven platform connecting startups, developers, and innovators to share stories, showcase projects, and collaborate in the digital ecosystem.",
+	keywords: [
+		"startups",
+		"innovation",
+		"tech community",
+		"Web Field",
+		"developer network",
+		"digital ecosystem",
+		"tech collaboration",
+		"product launch",
+		"startup stories",
+	],
+	openGraph: {
+		title: "Web Field – Startup & Innovation Community",
+		description:
+			"Web Field is a community-driven platform connecting startups, developers, and innovators to share stories, showcase projects, and collaborate in the digital ecosystem.",
+		images: [`${BASE_URL}/favicon.ico`],
+		siteName: "Web Field",
+		url: BASE_URL,
+		type: "website",
+	},
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: {
+			index: true,
+			follow: true,
+			"max-snippet": -1,
+			"max-image-preview": "large",
+			"max-video-preview": -1,
+		},
+	},
+	other: {
+		"application/ld+json": JSON.stringify({
+			"@context": "http://schema.org",
+			"@type": "WebSite",
+			name: "Web Field",
+			url: BASE_URL,
+			description:
+				"A platform for startups, developers, and innovators to connect, share projects, and collaborate in the tech ecosystem.",
+			publisher: {
+				"@type": "Organization",
+				name: "Web Field",
+				logo: {
+					"@type": "ImageObject",
+					url: `${BASE_URL}/favicon.ico`,
+				},
+			},
+		}),
+	},
 };
 
 export default function RootLayout({
